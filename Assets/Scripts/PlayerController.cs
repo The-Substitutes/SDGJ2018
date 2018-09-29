@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour {
 	public float rotationSpeed = 10;
 
 
+	public Transform graphic;
+
 	// Use this for initialization
 	void Start () {
 		rigid = this.GetComponent<Rigidbody>();
@@ -43,7 +45,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 
-	float rotation = 180;
+	float rotation = 1;
 	void Movement() {
 		
 		if(Input.GetKey(KeyCode.LeftShift)) {
@@ -54,10 +56,13 @@ public class PlayerController : MonoBehaviour {
 
 
 		if(Mathf.Abs(Input.GetAxis("Horizontal")) > 0.01){
-			rotation = 90 + 90 * Mathf.Sign(Input.GetAxis("Horizontal"));
+			rotation = Mathf.Sign(Input.GetAxis("Horizontal"));
 		}
 
-		this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.Euler(0, rotation, 0), rotationSpeed * Time.deltaTime);
+		graphic.transform.localRotation = Quaternion.Lerp(this.transform.rotation, Quaternion.Euler(0, rotation, 0), rotationSpeed * Time.deltaTime);
+		Debug.Log(graphic.transform.localRotation.ToEuler());
+		//this.transform.rotation = Quaternion.Euler(0, rotation, 0);
+
 
 		if(Input.GetKey(KeyCode.Space)) {
 			Jump();
