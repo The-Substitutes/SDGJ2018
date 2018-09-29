@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour {
 				isJumping = true;
 			}
 			holdTimer += Time.fixedDeltaTime;
-			jumpHold = Mathf.Clamp(2 + holdTimer, 3-jumpTime , 3 + jumpTime);
+			//jumpHold = Mathf.Clamp(2 + holdTimer, 3-jumpTime , 3 + jumpTime);
 			rigid.AddForce(Physics.gravity / jumpHold, ForceMode.Acceleration);
 		}
 	}
