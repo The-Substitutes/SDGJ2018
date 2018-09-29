@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour {
 	Rigidbody rigid;
 
 	public float movementSpeed = 1;
-	public float sprintSpeed = 2;
+	public float sprintMultiplier = 2;
 
 	public float jumpVelocity = 1;
 
@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour {
 	void Movement() {
 		
 		if(Input.GetKey(KeyCode.LeftShift)) {
-			rigid.velocity = new Vector3(Input.GetAxis("Horizontal")  movementSpeed * sprintSpeed, rigid.velocity.y, Input.GetAxis("Vertical") * movementSpeed * sprintSpeed);
+			rigid.velocity = new Vector3(Input.GetAxis("Horizontal") * movementSpeed * sprintMultiplier, rigid.velocity.y, Input.GetAxis("Vertical") * sprintMultiplier * sprintSpeed);
 		} else {
 			this.rigid.velocity = new Vector3(Input.GetAxis("Horizontal")  * movementSpeed, rigid.velocity.y, Input.GetAxis("Vertical")  * movementSpeed);
 		}
