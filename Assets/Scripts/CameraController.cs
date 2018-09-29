@@ -10,7 +10,6 @@ public class CameraController : MonoBehaviour {
 	public bool lockCameraFromEditor = true;
 	public Vector3 cameraOffset;
 
-
 	// Use this for initialization
 	void Start () {
 		if(lockCameraFromEditor) {

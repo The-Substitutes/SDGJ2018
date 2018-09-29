@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour {
 	public float jumpTime = .5f;
 
 	public bool isGrounded = false;
+	public float rotationSpeed = 10;
 
 
 	// Use this for initialization
@@ -34,9 +35,10 @@ public class PlayerController : MonoBehaviour {
 	bool isJumping = false;
 	float jumpHeight = 0, holdTimer;
 	void Jump() {
-		if(holdTimer < jumpTime && isGrounded) {
+		if(holdTimer < jumpTime) {
 			if(!isJumping) {
-				rigid.velocity = new Vector3(rigid.velocity.x, jumpVelocity, rigid.velocity.z);
+				//rigid.velocity = new Vector3(rigid.velocity.x, jumpVelocity, rigid.velocity.z);
+				rigid.velocity = rigid.velocity + contactPoints.normalized * jumpVelocity;
 				isGrounded = false;
 			}
 			holdTimer += Time.fixedDeltaTime;
@@ -45,10 +47,19 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	void Movement() {
-		this.rigid.velocity = new Vector3(Input.GetAxis("Horizontal"), rigid.velocity.y, Input.GetAxis("Vertical")) * movementSpeed;
 
-		if(Input.GetKey(KeyCode.Space)) {
+	public float rotation = 90;
+	void Movement() {
+		this.rigid.velocity = new Vector3(Input.GetAxis("Horizontal")  * movementSpeed, rigid.velocity.y, Input.GetAxis("Vertical")  * movementSpeed);
+
+		if(Mathf.Abs(Input.GetAxis("Horizontal")) > 0.01){
+			rotation = 90 - 90 * Mathf.Sign(Input.GetAxis("Horizontal"));
+		}
+
+		this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.Euler(0, rotation, 0), rotationSpeed * Time.deltaTime);
+
+
+		if(Input.GetKey(KeyCode.Space) && isGrounded) {
 			Jump();
 		} else {
 			isJumping = false;
@@ -58,18 +69,20 @@ public class PlayerController : MonoBehaviour {
 
 	public Vector3 contactPoints;
 
+	void OnCollisionExit(Collision other) {
+		isGrounded = false;
+	}
+
 	void OnCollisionStay(Collision other) {
+		isGrounded = true;
 		Vector3 contactSum = Vector3.zero;
 		for (int i = 0; i < other.contacts.Length; i++) {
 			contactSum += other.contacts[i].point;
 		}
 
-		contactSum -= this.transform.position;
+		contactPoints = contactSum -= this.transform.position;
 
 		Debug.DrawLine(this.transform.position, this.transform.position + contactSum.normalized, Color.red);
-		if(Vector3.Angle(contactSum.normalized, Vector3.down) < 5f) {
-			isGrounded = true;
-		}
 	}
 
 }
