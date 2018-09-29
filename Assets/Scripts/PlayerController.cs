@@ -34,7 +34,6 @@ public class PlayerController : MonoBehaviour {
 
 
 	public bool isJumping = false;
-	public float jumpHold = 2, holdTimer;
 	void Jump() {
 		if(holdTimer < jumpTime) {
 			if(!isJumping && isGrounded) {
@@ -44,9 +43,8 @@ public class PlayerController : MonoBehaviour {
 				rigid.useGravity = false;
 				isJumping = true;
 			}
-			holdTimer += Time.fixedDeltaTime;
 			//jumpHold = Mathf.Clamp(2 + holdTimer, 3-jumpTime , 3 + jumpTime);
-			rigid.AddForce(Physics.gravity / jumpHold, ForceMode.Acceleration);
+			rigid.AddForce(Physics.gravity / 2, ForceMode.Acceleration);
 		}
 	}
 
@@ -69,15 +67,13 @@ public class PlayerController : MonoBehaviour {
 
 		if(Input.GetKey(KeyCode.Space)) {
 			Jump();
-			holdTimer = 0;
 		}
 
 		if(isJumping && rigid.velocity.y <= 0) {
 			rigid.useGravity = true;
 			isJumping = false;
 		} else {
-			Debug.Log(Physics.gravity / jumpHold);
-			rigid.AddForce(Physics.gravity / jumpHold, ForceMode.Acceleration);
+			rigid.AddForce(Physics.gravity / 2, ForceMode.Acceleration);
 		}
 			
 	}
