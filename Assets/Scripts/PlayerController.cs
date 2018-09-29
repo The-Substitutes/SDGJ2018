@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
 	Rigidbody rigid;
 
 	public float movementSpeed = 1;
+	public float sprintSpeed = 2;
 
 	public float jumpVelocity = 1;
 
@@ -32,42 +33,56 @@ public class PlayerController : MonoBehaviour {
 	}
 
 
-	bool isJumping = false;
-	float jumpHeight = 0, holdTimer;
+	public bool isJumping = false;
+	public float jumpHold = 2, holdTimer;
 	void Jump() {
 		if(holdTimer < jumpTime) {
-			if(!isJumping) {
-				//rigid.velocity = new Vector3(rigid.velocity.x, jumpVelocity, rigid.velocity.z);
-				rigid.velocity = rigid.velocity + contactPoints.normalized * jumpVelocity;
+			if(!isJumping && isGrounded) {
+				rigid.velocity = new Vector3(rigid.velocity.x, jumpVelocity, rigid.velocity.z);
+				//rigid.velocity = new Vector3(rigid.velocity.x, contactPoints.normalized.y * jumpVelocity, rigid.velocity.z);
 				isGrounded = false;
+				rigid.useGravity = false;
+				isJumping = true;
 			}
 			holdTimer += Time.fixedDeltaTime;
-			jumpHeight = Mathf.Clamp(4 - holdTimer, 2, 4);
-			rigid.velocity += -Physics.gravity / jumpHeight;
+			jumpHold = Mathf.Clamp(2 + holdTimer, 3-jumpTime , 3 + jumpTime);
+			rigid.AddForce(Physics.gravity / jumpHold, ForceMode.Acceleration);
 		}
 	}
 
 
-	public float rotation = 90;
+	float rotation = 180;
 	void Movement() {
-		this.rigid.velocity = new Vector3(Input.GetAxis("Horizontal")  * movementSpeed, rigid.velocity.y, Input.GetAxis("Vertical")  * movementSpeed);
+		
+		if(Input.GetKey(KeyCode.LeftShift)) {
+			rigid.velocity = new Vector3(Input.GetAxis("Horizontal")  * sprintSpeed, rigid.velocity.y, Input.GetAxis("Vertical")  * sprintSpeed);
+		} else {
+			this.rigid.velocity = new Vector3(Input.GetAxis("Horizontal")  * movementSpeed, rigid.velocity.y, Input.GetAxis("Vertical")  * movementSpeed);
+		}
+
 
 		if(Mathf.Abs(Input.GetAxis("Horizontal")) > 0.01){
-			rotation = 90 - 90 * Mathf.Sign(Input.GetAxis("Horizontal"));
+			rotation = 90 + 90 * Mathf.Sign(Input.GetAxis("Horizontal"));
 		}
 
 		this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.Euler(0, rotation, 0), rotationSpeed * Time.deltaTime);
 
-
-		if(Input.GetKey(KeyCode.Space) && isGrounded) {
+		if(Input.GetKey(KeyCode.Space)) {
 			Jump();
-		} else {
-			isJumping = false;
 			holdTimer = 0;
 		}
+
+		if(isJumping && rigid.velocity.y <= 0) {
+			rigid.useGravity = true;
+			isJumping = false;
+		} else {
+			Debug.Log(Physics.gravity / jumpHold);
+			rigid.AddForce(Physics.gravity / jumpHold, ForceMode.Acceleration);
+		}
+			
 	}
 
-	public Vector3 contactPoints;
+	Vector3 contactPoints;
 
 	void OnCollisionExit(Collision other) {
 		isGrounded = false;
@@ -81,8 +96,6 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		contactPoints = contactSum -= this.transform.position;
-
-		Debug.DrawLine(this.transform.position, this.transform.position + contactSum.normalized, Color.red);
 	}
 
 }
