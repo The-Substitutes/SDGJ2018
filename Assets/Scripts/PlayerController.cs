@@ -35,17 +35,15 @@ public class PlayerController : MonoBehaviour {
 
 	public bool isJumping = false;
 	void Jump() {
-		if(holdTimer < jumpTime) {
-			if(!isJumping && isGrounded) {
-				rigid.velocity = new Vector3(rigid.velocity.x, jumpVelocity, rigid.velocity.z);
-				//rigid.velocity = new Vector3(rigid.velocity.x, contactPoints.normalized.y * jumpVelocity, rigid.velocity.z);
-				isGrounded = false;
-				rigid.useGravity = false;
-				isJumping = true;
-			}
-			//jumpHold = Mathf.Clamp(2 + holdTimer, 3-jumpTime , 3 + jumpTime);
-			rigid.AddForce(Physics.gravity / 2, ForceMode.Acceleration);
+		if(!isJumping && isGrounded) {
+			rigid.velocity = new Vector3(rigid.velocity.x, jumpVelocity, rigid.velocity.z);
+			//rigid.velocity = new Vector3(rigid.velocity.x, contactPoints.normalized.y * jumpVelocity, rigid.velocity.z);
+			isGrounded = false;
+			rigid.useGravity = false;
+			isJumping = true;
 		}
+		//jumpHold = Mathf.Clamp(2 + holdTimer, 3-jumpTime , 3 + jumpTime);
+		rigid.AddForce(Physics.gravity / 2, ForceMode.Acceleration);
 	}
 
 
