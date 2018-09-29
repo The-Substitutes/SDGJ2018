@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour {
 	void Movement() {
 		
 		if(Input.GetKey(KeyCode.LeftShift)) {
-			rigid.velocity = new Vector3(Input.GetAxis("Horizontal")  * sprintSpeed, rigid.velocity.y, Input.GetAxis("Vertical")  * sprintSpeed);
+			rigid.velocity = new Vector3(Input.GetAxis("Horizontal")  movementSpeed * sprintSpeed, rigid.velocity.y, Input.GetAxis("Vertical") * movementSpeed * sprintSpeed);
 		} else {
 			this.rigid.velocity = new Vector3(Input.GetAxis("Horizontal")  * movementSpeed, rigid.velocity.y, Input.GetAxis("Vertical")  * movementSpeed);
 		}
