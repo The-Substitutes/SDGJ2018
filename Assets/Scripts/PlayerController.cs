@@ -67,9 +67,6 @@ public class PlayerController : MonoBehaviour {
 		contactSum -= this.transform.position;
 
 		Debug.DrawLine(this.transform.position, this.transform.position + contactSum.normalized, Color.red);
-
-		Debug.Log(Vector3.Angle(contactSum, Vector3.down));
-
 		if(Vector3.Angle(contactSum.normalized, Vector3.down) < 5f) {
 			isGrounded = true;
 		}
