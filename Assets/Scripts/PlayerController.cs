@@ -22,11 +22,7 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
 		rigid = this.GetComponent<Rigidbody>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
 
-	}
 
 	void FixedUpdate() {
 		Movement();
