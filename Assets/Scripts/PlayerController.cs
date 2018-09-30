@@ -5,7 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour {
 
-	Rigidbody rigid;
+	[HideInInspector]
+	public Rigidbody rigid;
 
 	public float movementSpeed = 1;
 	public float sprintMultiplier = 2;
@@ -18,7 +19,7 @@ public class PlayerController : MonoBehaviour {
 	public float rotationSpeed = 10;
 
 
-	public Transform graphic;
+	public GameObject graphic;
 
 	// Use this for initialization
 	void Start () {
@@ -45,7 +46,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 
-	float rotation = 1;
+	float rotation = 180;
 	void Movement() {
 		
 		if(Input.GetKey(KeyCode.LeftShift)) {
@@ -56,11 +57,10 @@ public class PlayerController : MonoBehaviour {
 
 
 		if(Mathf.Abs(Input.GetAxis("Horizontal")) > 0.01){
-			rotation = Mathf.Sign(Input.GetAxis("Horizontal"));
+			rotation = 90 + 90 * Mathf.Sign(Input.GetAxis("Horizontal"));
 		}
 
-		graphic.transform.localRotation = Quaternion.Lerp(this.transform.rotation, Quaternion.Euler(0, rotation, 0), rotationSpeed * Time.deltaTime);
-		Debug.Log(graphic.transform.localRotation.ToEuler());
+		graphic.transform.rotation = Quaternion.Lerp(graphic.transform.rotation, Quaternion.Euler(0, rotation, 0), rotationSpeed * Time.deltaTime);
 		//this.transform.rotation = Quaternion.Euler(0, rotation, 0);
 
 
