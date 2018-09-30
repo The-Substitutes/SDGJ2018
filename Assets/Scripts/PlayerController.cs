@@ -87,11 +87,15 @@ public class PlayerController : MonoBehaviour {
 		Vector3 contactSum = Vector3.zero;
 		for (int i = 0; i < other.contacts.Length; i++) {
 			contactSum += other.contacts[i].point;
+			Debug.DrawLine(this.transform.position, other.contacts[i].point, Color.yellow);
 		}
 
-		contactPoints = contactSum -= this.transform.position;
+		contactPoints = (contactSum /= other.contacts.Length) - this.transform.position;
 
-		if(Vector3.Angle(contactPoints, Vector3.down) < 5) {
+		Debug.DrawLine(this.transform.position, this.transform.position + contactPoints, Color.red);
+		Debug.DrawLine(this.transform.position, this.transform.position + Vector3.down, Color.green);
+
+		if(Vector3.Angle(contactPoints, Vector3.down) < 18.53759) {
 			isGrounded = true;
 		}
 	}
