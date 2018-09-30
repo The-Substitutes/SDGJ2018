@@ -19,8 +19,6 @@ public class AnimationHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		animator.SetBool("IsGrounded", controller.isGrounded);
-		animator.SetBool("IsJumping", controller.isJumping);
 
 	}
 }

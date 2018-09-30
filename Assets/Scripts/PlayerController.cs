@@ -84,13 +84,16 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void OnCollisionStay(Collision other) {
-		isGrounded = true;
 		Vector3 contactSum = Vector3.zero;
 		for (int i = 0; i < other.contacts.Length; i++) {
 			contactSum += other.contacts[i].point;
 		}
 
 		contactPoints = contactSum -= this.transform.position;
+
+		if(Vector3.Angle(contactPoints, Vector3.down) < 5) {
+			isGrounded = true;
+		}
 	}
 
 }
