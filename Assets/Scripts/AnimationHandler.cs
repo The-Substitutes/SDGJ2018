@@ -7,6 +7,8 @@ public class AnimationHandler : MonoBehaviour {
 	Animator animator;
 	PlayerController controller;
 
+	public GameObject eyes;
+
 	float speed;
 
 	// Use this for initialization
@@ -17,6 +19,8 @@ public class AnimationHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		animator.SetFloat("Horizontal_Speed", Mathf.Abs(controller.rigid.velocity.x));
+		animator.SetBool("IsGrounded", controller.isGrounded);
+		animator.SetBool("IsJumping", controller.isJumping);
+
 	}
 }
