@@ -14,13 +14,13 @@ public class SewageKey : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter(Collision other) {
+	void OnTriggerEnter(Collider other) {
 		if(other.transform.tag == "Trash") {
 			trash.Add(other.gameObject);
 		}
 	}
 
-	void OnTriggerExit(Collision other) {
+	void OnTriggerExit(Collider other) {
 		if(other.transform.tag == "Trash") {
 			trash.Remove(other.gameObject);
 		}

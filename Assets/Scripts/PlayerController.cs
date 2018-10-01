@@ -5,6 +5,12 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour {
 
+
+	public SpriteRenderer sr;
+	public float h = 0;
+
+	public SpriteRenderer shadow;
+
 	[HideInInspector]
 	public Rigidbody rigid;
 
@@ -24,11 +30,24 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		rigid = this.GetComponent<Rigidbody>();
+		sr = this.GetComponentInChildren<SpriteRenderer>();
+		shadow.transform.parent = this.transform;
 	}
 
 
 	void FixedUpdate() {
 		Movement();
+		sr.color = Color.HSVToRGB(h, 1, 1);
+
+
+		RaycastHit[] hits = Physics.RaycastAll(new Ray(this.transform.position, Vector3.down));
+		for (int i = 0; i < hits.Length; i++) {
+			Debug.Log(i + " " + hits[i]);
+		}
+
+		if(hits.Length >= 2) {
+			shadow.transform.position = hits[1].point + Vector3.up * .1f;
+		}
 	}
 
 
@@ -50,6 +69,7 @@ public class PlayerController : MonoBehaviour {
 	void Movement() {
 		
 		if(Input.GetKey(KeyCode.LeftShift)) {
+			h = Time.fixedTime % 1;
 			rigid.velocity = new Vector3(Input.GetAxis("Horizontal") * movementSpeed * sprintMultiplier, rigid.velocity.y, Input.GetAxis("Vertical") * sprintMultiplier * movementSpeed);
 		} else {
 			this.rigid.velocity = new Vector3(Input.GetAxis("Horizontal")  * movementSpeed, rigid.velocity.y, Input.GetAxis("Vertical")  * movementSpeed);
