@@ -470,7 +470,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh62124
+  m_Name: pb_Mesh69864
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -625,7 +625,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-338162
+  m_Name: pb_Mesh69972
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -31912,7 +31912,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh18800
+  m_Name: pb_Mesh69882
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -33427,7 +33427,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh62162
+  m_Name: pb_Mesh69904
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -33593,7 +33593,7 @@ GameObject:
   - component: {fileID: 719382940}
   m_Layer: 0
   m_Name: Icosphere (3)
-  m_TagString: Untagged
+  m_TagString: Trash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -37360,7 +37360,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 719382939}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.54, y: 2.44, z: 4.2000003}
+  m_LocalPosition: {x: -3.5, y: 3.5, z: 3.375}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 0}
@@ -37371,7 +37371,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh62180
+  m_Name: pb_Mesh69922
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -38660,6 +38660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   go: {fileID: 2049556308}
+  trash: []
 --- !u!1001 &1264424019
 Prefab:
   m_ObjectHideFlags: 0
@@ -38752,7 +38753,7 @@ GameObject:
   - component: {fileID: 1275192722}
   m_Layer: 0
   m_Name: Icosphere (4)
-  m_TagString: Untagged
+  m_TagString: Trash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -42519,7 +42520,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1275192721}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.12, y: 2.66, z: 1.36}
+  m_LocalPosition: {x: -2.625, y: 3.75, z: 1.375}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -42586,7 +42587,7 @@ GameObject:
   - component: {fileID: 1323290371}
   m_Layer: 0
   m_Name: Icosphere (6)
-  m_TagString: Untagged
+  m_TagString: Trash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -46353,7 +46354,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1323290370}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.25, y: 3.65, z: 4.2000003}
+  m_LocalPosition: {x: -2, y: 3.625, z: 2.75}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 0}
@@ -46530,7 +46531,7 @@ GameObject:
   - component: {fileID: 1555933519}
   m_Layer: 0
   m_Name: Icosphere (5)
-  m_TagString: Untagged
+  m_TagString: Trash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -50297,7 +50298,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1555933518}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.03, y: 2.86, z: 1.36}
+  m_LocalPosition: {x: -1, y: 3.875, z: 1.375}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -53127,7 +53128,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh18744
+  m_Name: pb_Mesh69826
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2

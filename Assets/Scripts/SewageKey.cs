@@ -5,7 +5,7 @@ using UnityEngine;
 public class SewageKey : MonoBehaviour {
 
 	public GameObject go;
-	List<GameObject> trash;
+	public List<GameObject> trash;
 
 
 	void Update() {
